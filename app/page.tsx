@@ -1,0 +1,453 @@
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
+import {
+  Menu,
+  X,
+  Brain,
+  Users,
+  CheckCircle,
+  ArrowRight,
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  Mic,
+  UsersRound,
+  Bot,
+  Wrench,
+} from "lucide-react"
+
+export default function GetBrainLanding() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+    setIsMenuOpen(false) // Fecha o menu mobile após clicar
+  }
+
+  const solutions = [
+    {
+      title: "Get Audio",
+      description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
+      icon: <Mic className="w-8 h-8 text-blue-500" />,
+    },
+    {
+      title: "Get Group",
+      description:
+        "IA inteligente para resumir automaticamente conversas de grupos do WhatsApp, destacando pontos importantes.",
+      icon: <UsersRound className="w-8 h-8 text-blue-500" />,
+    },
+    {
+      title: "Get SDR",
+      description: "IA de atendimento especializada para WhatsApp que converte leads e automatiza vendas 24/7.",
+      icon: <Bot className="w-8 h-8 text-blue-500" />,
+    },
+    {
+      title: "Get Build",
+      description:
+        "Criação sob demanda de soluções de IA personalizadas para suas necessidades específicas de negócio.",
+      icon: <Wrench className="w-8 h-8 text-blue-500" />,
+    },
+    {
+      title: "Get Assistant",
+      description: "Assistente de IA personalizado integrado à sua plataforma para suporte e automação inteligente.",
+      icon: <Brain className="w-8 h-8 text-blue-500" />,
+    },
+  ]
+
+  const differentials = [
+    {
+      icon: <Brain className="w-12 h-12 text-blue-500" />,
+      title: "IA de Ponta",
+      description: "Utilizamos as mais avançadas tecnologias de inteligência artificial do mercado.",
+    },
+    {
+      icon: <Users className="w-12 h-12 text-blue-500" />,
+      title: "Equipe Especializada",
+      description: "Time de experts em IA, machine learning e desenvolvimento de soluções corporativas.",
+    },
+    {
+      icon: <CheckCircle className="w-12 h-12 text-blue-500" />,
+      title: "Resultados Comprovados",
+      description: "Mais de 100 empresas já transformaram seus negócios com nossas soluções.",
+    },
+  ]
+
+  const processSteps = [
+    {
+      title: "Diagnóstico e Planejamento",
+      description:
+        "Analisamos suas necessidades específicas e definimos os objetivos do seu agente de IA personalizado.",
+      details: [
+        "Análise detalhada dos processos atuais",
+        "Identificação de oportunidades de melhoria",
+        "Definição de KPIs e métricas de sucesso",
+      ],
+    },
+    {
+      title: "Desenvolvimento e Treinamento",
+      description: "Desenvolvemos e treinamos seu agente de IA com dados relevantes para sua empresa e setor.",
+      details: [
+        "Desenvolvimento de algoritmos personalizados",
+        "Treinamento com dados específicos do seu negócio",
+        "Testes rigorosos de qualidade e performance",
+      ],
+    },
+    {
+      title: "Implementação e Otimização",
+      description:
+        "Implementamos a solução em seu ambiente e realizamos otimizações contínuas para máxima performance.",
+      details: [
+        "Implementação gradual e segura",
+        "Monitoramento contínuo de performance",
+        "Otimizações baseadas em feedback real",
+      ],
+    },
+  ]
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700 z-50">
+  <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    {/* Logo GetBrain */}
+    <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-10 w-auto" />
+
+    {/* Desktop Menu */}
+    <nav className="hidden md:flex items-center space-x-8">
+      {/* Botão "Início" primeiro */}
+      <a href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
+        Início
+      </a>
+
+      {/* Botão "Vantagens" depois */}
+      <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
+        Vantagens
+      </button>
+
+      <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
+      <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
+        Processo
+      </button>
+      <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
+        Contato
+      </button>
+    </nav>
+
+    <div className="flex items-center space-x-4">
+            <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-[#142544] border-t border-slate-600">
+            <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+              <button
+                onClick={() => scrollToSection("vantagens")}
+                className="hover:text-blue-400 transition-colors text-left"
+              >
+                Vantagens
+              </button>
+              <a href="/solucoes" className="hover:text-blue-400 transition-colors">
+                Soluções
+              </a>
+              <button
+                onClick={() => scrollToSection("processo")}
+                className="hover:text-blue-400 transition-colors text-left"
+              >
+                Processo
+              </button>
+              <button
+                onClick={() => scrollToSection("contato")}
+                className="hover:text-blue-400 transition-colors text-left"
+              >
+                Contato
+              </button>
+              <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* Hero Section com Imagem de Fundo */}
+      <section className="pt-24 pb-16 px-4 relative min-h-[80vh] flex items-center">
+        {/* Imagem de fundo com overlay */}
+        <div className="absolute inset-0 z-0">
+          <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-slate-900/70"></div>
+        </div>
+
+        <div className="container mx-auto text-center relative z-10">
+          <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Tecnologia de IA de Ponta</Badge>
+
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Transforme sua empresa
+            <br />
+            com <span className="text-blue-400">agentes de IA</span>
+            <br />
+            customizados
+          </h1>
+
+          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+            Automatize processos, aumente a produtividade e reduza custos com agentes de IA projetados especificamente
+            para o seu negócio.
+          </p>
+
+          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+            Conhecer nossas soluções
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+
+          <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <span>+100 empresas já utilizam nossos agentes de IA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions Section */}
+      <section id="solucoes" className="py-16 px-4 bg-slate-800/50">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossas Soluções</h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              Descubra como nossa tecnologia pode revolucionar diferentes áreas do seu negócio
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {solutions.map((solution, index) => (
+              <Card key={index} className="bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <CardHeader>
+                  <div className="mb-4">{solution.icon}</div>
+                  <CardTitle className="text-white">{solution.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-slate-300">{solution.description}</CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button
+              variant="outline"
+              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
+              onClick={() => (window.location.href = "/solucoes")}
+            >
+              Conheça todas as nossas soluções
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Differentials Section */}
+      <section id="vantagens" className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Diferenciais</h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              Por que escolher a GetBrain para transformar seu negócio
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {differentials.map((differential, index) => (
+              <div key={index} className="text-center">
+                <div className="mb-6 flex justify-center">{differential.icon}</div>
+                <h3 className="text-xl font-semibold mb-4">{differential.title}</h3>
+                <p className="text-slate-300">{differential.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Horizontal */}
+<div id="processo" className="grid md:grid-cols-3 gap-8 md:gap-4">
+  {processSteps.map((step, index) => (
+    <div key={index} className="relative">
+      {/* Container do step */}
+      <div className="flex flex-col items-center text-center">
+        {/* Ícone circular */}
+        <div className="relative z-10 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 border-4 border-slate-800 shadow-lg">
+          {/* ✅ Aqui, adicionamos os ícones corretamente */}
+          {index === 0 && <Mic className="w-8 h-8 text-white" />}
+          {index === 1 && <UsersRound className="w-8 h-8 text-white" />}
+          {index === 2 && <Bot className="w-8 h-8 text-white" />}
+        </div>
+
+        {/* Conteúdo do step */}
+        <div className="max-w-xs">
+          <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+          <p className="text-slate-300 text-sm leading-relaxed mb-4">{step.description}</p>
+
+          {/* Detalhes sempre visíveis */}
+          <div className="p-4 bg-slate-700/50 rounded-lg border border-blue-500/30">
+            <ul className="space-y-2 text-left">
+              {step.details.map((detail, detailIndex) => (
+                <li key={detailIndex} className="flex items-start text-slate-300 text-sm">
+                  <CheckCircle className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+
+      {/* CTA Form Section */}
+      <section id="contato" className="py-16 px-4">
+        <div className="container mx-auto max-w-2xl">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para começar?</h2>
+            <p className="text-xl text-slate-300">
+              Entre em contato conosco e descubra como podemos transformar seu negócio
+            </p>
+          </div>
+
+          <Card className="bg-slate-800 border-slate-700">
+            <CardContent className="p-6">
+              <form className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Input
+                    placeholder="Nome completo"
+                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                  />
+                  <Input
+                    placeholder="E-mail corporativo"
+                    type="email"
+                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                  />
+                </div>
+                <Input
+                  placeholder="Empresa"
+                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                />
+                <Input
+                  placeholder="Telefone"
+                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                />
+                <Textarea
+                  placeholder="Conte-nos sobre seu projeto ou necessidade"
+                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                  rows={4}
+                />
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#142544] border-t border-slate-700 py-12 px-4">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
+              <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
+              <div className="flex space-x-4">
+                <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer"><Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" /></a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Soluções</h4>
+              <ul className="space-y-2 text-slate-300">
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Audio
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Group
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get SDR
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Build
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Assistant
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Empresa</h4>
+              <ul className="space-y-2 text-slate-300">
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Políticas
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Termos de uso
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-4">Contato</h4>
+              <div className="space-y-2 text-slate-300">
+                <div className="flex items-center">
+                  <Phone className="w-4 h-4 mr-2" />
+                  <span>(21) 97381-8244</span>
+                </div>
+                <div className="flex items-center">
+                  <Mail className="w-4 h-4 mr-2" />
+                  <span>daniel@getbrain.com.br</span>
+                </div>
+                <div className="flex items-center">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  <span>Rio de Janeiro, RJ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-700 pt-8 text-center text-slate-400">
+            <p>&copy; 2025 GetBrain. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
