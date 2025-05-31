@@ -136,11 +136,11 @@ export default function SolucoesPage() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700 z-50">
+      <header className="fixed top-0 w-full z-50">
   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
   
 <Link href="/">
-  <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-10 w-auto cursor-pointer" />
+  <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto cursor-pointer" />
 </Link>
 
     <nav className="hidden md:flex items-center space-x-8">
@@ -336,11 +336,11 @@ export default function SolucoesPage() {
               <div className="space-y-2 text-slate-300">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>(21) 97381-8244</span>
+                  <span>(21) 99016-8793</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>daniel@getbrain.com.br</span>
+                  <span>contato@getbrain.com.br</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -22,10 +22,9 @@ import {
   Bot,
   Wrench,
 } from "lucide-react"
-
 export default function GetBrainLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const [isScrolled, setIsScrolled] = useState(false)
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -36,6 +35,19 @@ export default function GetBrainLanding() {
     }
     setIsMenuOpen(false) // Fecha o menu mobile após clicar
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10) // Define como 'scrolled' após rolar 10 pixels
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    // Limpa o event listener ao desmontar o componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const solutions = [
     {
@@ -120,10 +132,10 @@ export default function GetBrainLanding() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700 z-50">
+      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
     {/* Logo GetBrain */}
-    <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-10 w-auto" />
+    <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto" />
 
     {/* Desktop Menu */}
     <nav className="hidden md:flex items-center space-x-8">
@@ -134,7 +146,7 @@ export default function GetBrainLanding() {
 
       {/* Botão "Vantagens" depois */}
       <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
-        Vantagens
+        Por que a Get Brain?
       </button>
 
       <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
@@ -164,7 +176,7 @@ export default function GetBrainLanding() {
                 onClick={() => scrollToSection("vantagens")}
                 className="hover:text-blue-400 transition-colors text-left"
               >
-                Vantagens
+                Por que a Get Brain?
               </button>
               <a href="/solucoes" className="hover:text-blue-400 transition-colors">
                 Soluções
@@ -225,6 +237,61 @@ export default function GetBrainLanding() {
         </div>
       </section>
 
+      {/* Chat Section */}
+      <section id="chat" className="py-16 px-4 bg-slate-800/50">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assisten</h2>
+            <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
+          </div>
+
+          <div className="bg-[#142544] rounded-lg shadow-xl overflow-hidden border border-slate-700">
+            {/* Chat Header */}
+            <div className="bg-blue-600 px-6 py-4 flex items-center space-x-3">
+              <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
+                {/* Placeholder for Assistant Icon */}
+                <Brain className="w-6 h-6 text-blue-300" />
+              </div>
+              <h3 className="text-xl font-semibold text-white">Get Assisten IA</h3>
+            </div>
+
+            {/* Chat Body */}
+            <div className="p-6 h-80 overflow-y-auto flex flex-col space-y-4">
+              {/* Placeholder Message */}
+              <div className="flex">
+                <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
+                  <p>Olá! Eu sou Get Assisten, sua assistente de IA. Como posso ajudar você hoje?</p>
+                  <span className="text-xs text-slate-400 block text-right mt-1">17:14</span> {/* Example timestamp */}
+                </div>
+              </div>
+              {/* Add more placeholder messages if needed */}
+            </div>
+
+            {/* Chat Input */}
+            <div className="bg-slate-800 p-4 border-t border-slate-700">
+              <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
+                <input
+                  type="text"
+                  placeholder="Envie uma mensagem para Get Assisten..."
+                  className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
+                  disabled // Disable input as it's frontend only for now
+                />
+                <button className="ml-3 text-slate-400 hover:text-blue-400 cursor-not-allowed" disabled>
+                  {/* Placeholder for Send Icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
+                </button>
+                {/* Optional: Add mic icon if needed */}
+                {/* <button className="ml-2 text-slate-400 hover:text-blue-400 cursor-not-allowed" disabled>
+                  <Mic className="w-5 h-5" />
+                </button> */}
+              </div>
+               <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* End Chat Section */}
+
       {/* Solutions Section */}
       <section id="solucoes" className="py-16 px-4 bg-slate-800/50">
         <div className="container mx-auto">
@@ -265,7 +332,7 @@ export default function GetBrainLanding() {
       <section id="vantagens" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Diferenciais</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Por que a Get Brain?</h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Por que escolher a GetBrain para transformar seu negócio
             </p>
@@ -429,11 +496,11 @@ export default function GetBrainLanding() {
               <div className="space-y-2 text-slate-300">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>(21) 97381-8244</span>
+                  <span>(21) 99016-8793</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>daniel@getbrain.com.br</span>
+                  <span>contato@getbrain.com.br</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />
@@ -447,6 +514,7 @@ export default function GetBrainLanding() {
             <p>&copy; 2025 GetBrain. Todos os direitos reservados.</p>
           </div>
         </div>
+
       </footer>
     </div>
   )
