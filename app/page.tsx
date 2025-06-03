@@ -159,7 +159,7 @@ export default function GetBrainLanding() {
     </nav>
 
     <div className="flex items-center space-x-4">
-            <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button></a>
 
             {/* Mobile Menu Button */}
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -193,7 +193,7 @@ export default function GetBrainLanding() {
               >
                 Contato
               </button>
-              <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
+              <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button></a>
             </nav>
           </div>
         )}
@@ -223,10 +223,12 @@ export default function GetBrainLanding() {
             para o seu negócio.
           </p>
 
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
-            Conhecer nossas soluções
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+              Conhecer nossas soluções
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </a>
 
           <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
             <div className="flex items-center space-x-2">
@@ -238,8 +240,9 @@ export default function GetBrainLanding() {
       </section>
 
       {/* Chat Section */}
-      <section id="chat" className="py-16 px-4 bg-slate-800/50">
-        <div className="container mx-auto max-w-3xl">
+      <section id="chat" className="py-16 px-4 relative bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
+  <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
+        <div className="container mx-auto max-w-3xl relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assisten</h2>
             <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
@@ -317,13 +320,14 @@ export default function GetBrainLanding() {
           </div>
 
           <div className="text-center">
-            <Button
-              variant="outline"
-              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-              onClick={() => (window.location.href = "/solucoes")}
-            >
-              Conheça todas as nossas soluções
-            </Button>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
+              >
+                Conheça todas as nossas soluções
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -425,7 +429,7 @@ export default function GetBrainLanding() {
                   className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                   rows={4}
                 />
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button>
+                <a href="mailto:contato@getbrain.com.br"><Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button></a>
               </form>
             </CardContent>
           </Card>
@@ -437,7 +441,7 @@ export default function GetBrainLanding() {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
+              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
               <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
               <div className="flex space-x-4">
                 <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer"><Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" /></a>

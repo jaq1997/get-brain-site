@@ -1,7 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Instagram, Phone, Mail, MapPin } from "lucide-react";
 
@@ -21,6 +22,7 @@ import {
 import Link from "next/link"
 
 export default function SolucoesPage() {
+  const [isScrolled, setIsScrolled] = useState(false)
   const solutions = [
     {
       title: "Get Audio",
@@ -133,10 +135,23 @@ export default function SolucoesPage() {
     },
   ]
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10) // Define como 'scrolled' após rolar 10 pixels
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    // Limpa o event listener ao desmontar o componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50">
+      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
   
 <Link href="/">
@@ -145,7 +160,7 @@ export default function SolucoesPage() {
 
     <nav className="hidden md:flex items-center space-x-8">
   <a href="/" className="hover:text-blue-400 transition-colors">Início</a>
-  <button className="hover:text-blue-400 transition-colors cursor-pointer">Vantagens</button>
+  <button className="hover:text-blue-400 transition-colors cursor-pointer">Por que a Get Brain?</button>
   <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
   <button className="hover:text-blue-400 transition-colors cursor-pointer">Processo</button>
   <button className="hover:text-blue-400 transition-colors cursor-pointer">Contato</button>
@@ -154,7 +169,7 @@ export default function SolucoesPage() {
 
 
     <div className="flex items-center space-x-4">
-      <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
+      <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button></a>
     </div>
   </div>
 </header>
@@ -215,7 +230,7 @@ export default function SolucoesPage() {
                       <div>
                         <span className="text-2xl font-bold text-blue-400">{solution.pricing}</span>
                       </div>
-                      <Button className="bg-blue-600 hover:bg-blue-700">Solicitar Demo</Button>
+                      <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="bg-blue-600 hover:bg-blue-700">Solicitar Demo</Button></a>
                     </div>
                   </div>
 
@@ -256,18 +271,22 @@ export default function SolucoesPage() {
             Fale com nossos especialistas e descubra qual solução é ideal para seu negócio
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Falar com Especialista
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-            >
-              <Clock className="w-5 h-5 mr-2" />
-              Agendar Demonstração
-            </Button>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Falar com Especialista
+              </Button>
+            </a>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
+              >
+                <Clock className="w-5 h-5 mr-2" />
+                Agendar Demonstração
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -277,7 +296,7 @@ export default function SolucoesPage() {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
+              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
               <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
               <div className="flex space-x-4">
                 <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer"><Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" /></a>
