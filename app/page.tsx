@@ -51,11 +51,6 @@ export default function GetBrainLanding() {
 
   const solutions = [
     {
-      title: "Get Audio",
-      description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
-      icon: <Mic className="w-8 h-8 text-blue-500" />,
-    },
-    {
       title: "Get Group",
       description:
         "IA inteligente para resumir automaticamente conversas de grupos do WhatsApp, destacando pontos importantes.",
@@ -76,6 +71,11 @@ export default function GetBrainLanding() {
       title: "Get Assistant",
       description: "Assistente de IA personalizado integrado à sua plataforma para suporte e automação inteligente.",
       icon: <Brain className="w-8 h-8 text-blue-500" />,
+    },
+    {
+      title: "Get Files", // Renomeado de Get Audio
+      description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
+      icon: <Mic className="w-8 h-8 text-blue-500" />,
     },
   ]
 
@@ -320,7 +320,7 @@ export default function GetBrainLanding() {
           </div>
 
           <div className="text-center">
-            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+            <a href="/solucoes">
               <Button
                 variant="outline"
                 className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
@@ -352,10 +352,21 @@ export default function GetBrainLanding() {
             ))}
           </div>
         </div>
+        </div>
       </section>
 
-      {/* Timeline Horizontal */}
-<div id="processo" className="grid md:grid-cols-3 gap-8 md:gap-4">
+      {/* Process Section */}
+      <section id="processo" className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nosso Processo</h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              Entenda como transformamos suas necessidades em soluções de IA eficazes
+            </p>
+          </div>
+
+          {/* Timeline Horizontal */}
+          <div className="grid md:grid-cols-3 gap-8 md:gap-4">
   {processSteps.map((step, index) => (
     <div key={index} className="relative">
       {/* Container do step */}
@@ -453,11 +464,6 @@ export default function GetBrainLanding() {
               <ul className="space-y-2 text-slate-300">
                 <li>
                   <a href="#" className="hover:text-blue-400">
-                    Get Audio
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
                     Get Group
                   </a>
                 </li>
@@ -474,6 +480,11 @@ export default function GetBrainLanding() {
                 <li>
                   <a href="#" className="hover:text-blue-400">
                     Get Assistant
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Files
                   </a>
                 </li>
               </ul>
@@ -500,11 +511,11 @@ export default function GetBrainLanding() {
               <div className="space-y-2 text-slate-300">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>(21) 99016-8793</span>
+                  <span>(21) 97381-8244</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>contato@getbrain.com.br</span>
+                  <span>daniel@getbrain.com.br</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />
