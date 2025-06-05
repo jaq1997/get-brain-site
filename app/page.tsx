@@ -464,7 +464,12 @@ export default function GetBrainLanding() {
               <ul className="space-y-2 text-slate-300">
                 <li>
                   <a href="#" className="hover:text-blue-400">
-                    Get Group
+                    Get Assistant
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
+                    Get Files
                   </a>
                 </li>
                 <li>
@@ -474,17 +479,12 @@ export default function GetBrainLanding() {
                 </li>
                 <li>
                   <a href="#" className="hover:text-blue-400">
+                    Get Group
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-400">
                     Get Build
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Assistant
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Files
                   </a>
                 </li>
               </ul>
