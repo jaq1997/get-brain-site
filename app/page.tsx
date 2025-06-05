@@ -22,9 +22,11 @@ import {
   Bot,
   Wrench,
 } from "lucide-react"
+
 export default function GetBrainLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -133,33 +135,35 @@ export default function GetBrainLanding() {
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
-  <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-    {/* Logo GetBrain */}
-    <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          {/* Logo GetBrain */}
+          <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
 
-    {/* Desktop Menu */}
-    <nav className="hidden md:flex items-center space-x-8">
-      {/* Botão "Início" primeiro */}
-      <a href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
-        Início
-      </a>
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {/* Botão "Início" primeiro */}
+            <a href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
+              Início
+            </a>
 
-      {/* Botão "Vantagens" depois */}
-      <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
-        Por que a Get Brain?
-      </button>
+            {/* Botão "Vantagens" depois */}
+            <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
+              Por que a Get Brain?
+            </button>
 
-      <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
-      <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
-        Processo
-      </button>
-      <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
-        Contato
-      </button>
-    </nav>
+            <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
+            <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
+              Processo
+            </button>
+            <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
+              Contato
+            </button>
+          </nav>
 
-    <div className="flex items-center space-x-4">
-            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button></a>
+          <div className="flex items-center space-x-4">
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
+            </a>
 
             {/* Mobile Menu Button */}
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -193,14 +197,16 @@ export default function GetBrainLanding() {
               >
                 Contato
               </button>
-              <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer"><Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button></a>
+              <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
+              </a>
             </nav>
           </div>
         )}
       </header>
 
       {/* Hero Section com Imagem de Fundo */}
-      <section className="pt-24 pb-16 px-4 relative min-h-[80vh] flex items-center">
+      <section className="pt-24 pb-8 px-4 relative min-h-[70vh] flex items-center">
         {/* Imagem de fundo com overlay */}
         <div className="absolute inset-0 z-0">
           <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
@@ -240,11 +246,11 @@ export default function GetBrainLanding() {
       </section>
 
       {/* Chat Section */}
-      <section id="chat" className="py-16 px-4 relative bg-cover bg-center" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
-  <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
+      <section id="chat" className="py-8 px-4 relative bg-cover bg-center" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
+        <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
         <div className="container mx-auto max-w-3xl relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assisten</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assistant</h2>
             <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
           </div>
 
@@ -255,7 +261,7 @@ export default function GetBrainLanding() {
                 {/* Placeholder for Assistant Icon */}
                 <Brain className="w-6 h-6 text-blue-300" />
               </div>
-              <h3 className="text-xl font-semibold text-white">Get Assisten IA</h3>
+              <h3 className="text-xl font-semibold text-white">Get Assistant IA</h3>
             </div>
 
             {/* Chat Body */}
@@ -263,11 +269,10 @@ export default function GetBrainLanding() {
               {/* Placeholder Message */}
               <div className="flex">
                 <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
-                  <p>Olá! Eu sou Get Assisten, sua assistente de IA. Como posso ajudar você hoje?</p>
-                  <span className="text-xs text-slate-400 block text-right mt-1">17:14</span> {/* Example timestamp */}
+                  <p>Olá! Eu sou Get Assistant, sua assistente de IA. Como posso ajudar você hoje?</p>
+                  <span className="text-xs text-slate-400 block text-right mt-1">17:14</span>
                 </div>
               </div>
-              {/* Add more placeholder messages if needed */}
             </div>
 
             {/* Chat Input */}
@@ -275,7 +280,7 @@ export default function GetBrainLanding() {
               <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
                 <input
                   type="text"
-                  placeholder="Envie uma mensagem para Get Assisten..."
+                  placeholder="Envie uma mensagem para Get Assistant..."
                   className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
                   disabled // Disable input as it's frontend only for now
                 />
@@ -283,17 +288,12 @@ export default function GetBrainLanding() {
                   {/* Placeholder for Send Icon */}
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
                 </button>
-                {/* Optional: Add mic icon if needed */}
-                {/* <button className="ml-2 text-slate-400 hover:text-blue-400 cursor-not-allowed" disabled>
-                  <Mic className="w-5 h-5" />
-                </button> */}
               </div>
-               <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
+              <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
             </div>
           </div>
         </div>
       </section>
-      {/* End Chat Section */}
 
       {/* Solutions Section */}
       <section id="solucoes" className="py-16 px-4 bg-slate-800/50">
@@ -352,7 +352,6 @@ export default function GetBrainLanding() {
             ))}
           </div>
         </div>
-        </div>
       </section>
 
       {/* Process Section */}
@@ -367,42 +366,39 @@ export default function GetBrainLanding() {
 
           {/* Timeline Horizontal */}
           <div className="grid md:grid-cols-3 gap-8 md:gap-4">
-  {processSteps.map((step, index) => (
-    <div key={index} className="relative">
-      {/* Container do step */}
-      <div className="flex flex-col items-center text-center">
-        {/* Ícone circular */}
-        <div className="relative z-10 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 border-4 border-slate-800 shadow-lg">
-          {/* ✅ Aqui, adicionamos os ícones corretamente */}
-          {index === 0 && <Mic className="w-8 h-8 text-white" />}
-          {index === 1 && <UsersRound className="w-8 h-8 text-white" />}
-          {index === 2 && <Bot className="w-8 h-8 text-white" />}
-        </div>
+            {processSteps.map((step, index) => (
+              <div key={index} className="relative">
+                {/* Container do step */}
+                <div className="flex flex-col items-center text-center">
+                  {/* Ícone circular */}
+                  <div className="relative z-10 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 border-4 border-slate-800 shadow-lg">
+                    {index === 0 && <Mic className="w-8 h-8 text-white" />}
+                    {index === 1 && <UsersRound className="w-8 h-8 text-white" />}
+                    {index === 2 && <Bot className="w-8 h-8 text-white" />}
+                  </div>
 
-        {/* Conteúdo do step */}
-        <div className="max-w-xs">
-          <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-          <p className="text-slate-300 text-sm leading-relaxed mb-4">{step.description}</p>
-
-          {/* Detalhes sempre visíveis */}
-          <div className="p-4 bg-slate-700/50 rounded-lg border border-blue-500/30">
-            <ul className="space-y-2 text-left">
-              {step.details.map((detail, detailIndex) => (
-                <li key={detailIndex} className="flex items-start text-slate-300 text-sm">
-                  <CheckCircle className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                  {detail}
-                </li>
-              ))}
-            </ul>
+                  {/* Conteúdo do step */}
+                  <div className="max-w-xs">
+                    <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                    <p className="text-slate-300 text-sm leading-relaxed mb-4">{step.description}</p>
+                    <div className="p-4 bg-slate-700/50 rounded-lg border border-blue-500/30">
+                      <ul className="space-y-2 text-left">
+                        {step.details.map((detail, detailIndex) => (
+                          <li key={detailIndex} className="flex items-start text-slate-300 text-sm">
+                            <CheckCircle className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-    </div>
-  ))}
-</div>
-
-
-
+      </section>
+      
       {/* CTA Form Section */}
       <section id="contato" className="py-16 px-4">
         <div className="container mx-auto max-w-2xl">
@@ -440,7 +436,9 @@ export default function GetBrainLanding() {
                   className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
                   rows={4}
                 />
-                <a href="mailto:contato@getbrain.com.br"><Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button></a>
+                <a href="mailto:contato@getbrain.com.br">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button>
+                </a>
               </form>
             </CardContent>
           </Card>
@@ -455,7 +453,9 @@ export default function GetBrainLanding() {
               <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
               <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
               <div className="flex space-x-4">
-                <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer"><Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" /></a>
+                <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" />
+                </a>
               </div>
             </div>
 
@@ -529,7 +529,6 @@ export default function GetBrainLanding() {
             <p>&copy; 2025 GetBrain. Todos os direitos reservados.</p>
           </div>
         </div>
-
       </footer>
     </div>
   )
