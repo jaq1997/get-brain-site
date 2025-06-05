@@ -25,7 +25,7 @@ export default function SolucoesPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const solutions = [
     {
-      title: "Get Audio",
+      title: "Get Files",
       subtitle: "Transcrição Inteligente de Áudios",
       description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
       icon: <Mic className="w-12 h-12 text-blue-500" />,
@@ -308,7 +308,7 @@ export default function SolucoesPage() {
               <ul className="space-y-2 text-slate-300">
                 <li>
                   <a href="#" className="hover:text-blue-400">
-                    Get Audio
+                    Get Files
                   </a>
                 </li>
                 <li>
