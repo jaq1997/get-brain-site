@@ -1,10 +1,12 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  ArrowLeft,
+  Menu,
+  X,
   UsersRound,
   Bot,
   Wrench,
@@ -15,10 +17,45 @@ import {
   TrendingUp,
   MessageCircle,
   FileText,
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
 } from "lucide-react"
 import Link from "next/link"
 
 export default function SolucoesPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Detectar scroll para mudar o estilo do header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // Função para scroll suave
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+    setIsMenuOpen(false) // Fecha o menu mobile após clicar
+  }
+
   const solutions = [
     {
       title: "Get Assistant",
@@ -133,31 +170,37 @@ export default function SolucoesPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      {/* Header */}
-      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
+      {/* Header - Igual ao da página principal */}
+      <header
+        className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700" : "bg-transparent"}`}
+      >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo GetBrain */}
-          <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
+          <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-10 w-auto" />
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center space-x-8">
             {/* Botão "Início" primeiro */}
-            <a href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
+            <Link href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
               Início
-            </a>
+            </Link>
 
             {/* Botão "Vantagens" depois */}
-            <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
+            <Link href="/#vantagens" className="hover:text-blue-400 transition-colors cursor-pointer">
               Por que a Get Brain?
-            </button>
+            </Link>
 
-            <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
-            <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
+            <Link href="/solucoes" className="hover:text-blue-400 transition-colors text-blue-400">
+              Soluções
+            </Link>
+
+            <Link href="/#processo" className="hover:text-blue-400 transition-colors cursor-pointer">
               Processo
-            </button>
-            <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
+            </Link>
+
+            <Link href="/#contato" className="hover:text-blue-400 transition-colors cursor-pointer">
               Contato
-            </button>
+            </Link>
           </nav>
 
           <div className="flex items-center space-x-4">
@@ -176,27 +219,26 @@ export default function SolucoesPage() {
         {isMenuOpen && (
           <div className="md:hidden bg-[#142544] border-t border-slate-600">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection("vantagens")}
-                className="hover:text-blue-400 transition-colors text-left"
-              >
+              <Link href="/" className="hover:text-blue-400 transition-colors text-left">
+                Início
+              </Link>
+
+              <Link href="/#vantagens" className="hover:text-blue-400 transition-colors text-left">
                 Por que a Get Brain?
-              </button>
-              <a href="/solucoes" className="hover:text-blue-400 transition-colors">
+              </Link>
+
+              <Link href="/solucoes" className="hover:text-blue-400 transition-colors text-blue-400 text-left">
                 Soluções
-              </a>
-              <button
-                onClick={() => scrollToSection("processo")}
-                className="hover:text-blue-400 transition-colors text-left"
-              >
+              </Link>
+
+              <Link href="/#processo" className="hover:text-blue-400 transition-colors text-left">
                 Processo
-              </button>
-              <button
-                onClick={() => scrollToSection("contato")}
-                className="hover:text-blue-400 transition-colors text-left"
-              >
+              </Link>
+
+              <Link href="/#contato" className="hover:text-blue-400 transition-colors text-left">
                 Contato
-              </button>
+              </Link>
+
               <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
               </a>
@@ -205,8 +247,8 @@ export default function SolucoesPage() {
         )}
       </header>
 
-      {/* Hero Section */}
-      <section className="py-16 px-4">
+      {/* Hero Section - Com padding-top para compensar o header fixo */}
+      <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto text-center">
           <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Soluções Completas</Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -258,7 +300,9 @@ export default function SolucoesPage() {
                       <div>
                         <span className="text-2xl font-bold text-blue-400">{solution.pricing}</span>
                       </div>
-                      <Button className="bg-blue-600 hover:bg-blue-700">Solicitar Demo</Button>
+                      <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+                        <Button className="bg-blue-600 hover:bg-blue-700">Solicitar Demo</Button>
+                      </a>
                     </div>
                   </div>
 
@@ -299,18 +343,22 @@ export default function SolucoesPage() {
             Fale com nossos especialistas e descubra qual solução é ideal para seu negócio
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Falar com Especialista
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-            >
-              <Clock className="w-5 h-5 mr-2" />
-              Agendar Demonstração
-            </Button>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Falar com Especialista
+              </Button>
+            </a>
+            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
+              >
+                <Clock className="w-5 h-5 mr-2" />
+                Agendar Demonstração
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -320,7 +368,7 @@ export default function SolucoesPage() {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
+              <img src="/images/logo-getbrain.png" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
               <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
               <div className="flex space-x-4">
                 <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer">
