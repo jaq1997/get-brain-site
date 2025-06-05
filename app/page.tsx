@@ -135,7 +135,7 @@ export default function GetBrainLanding() {
       <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
     {/* Logo GetBrain */}
-    <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto" />
+    <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
 
     {/* Desktop Menu */}
     <nav className="hidden md:flex items-center space-x-8">
@@ -223,7 +223,7 @@ export default function GetBrainLanding() {
             para o seu negócio.
           </p>
 
-          <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+          <a href="/solucoes">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
               Conhecer nossas soluções
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -240,7 +240,7 @@ export default function GetBrainLanding() {
       </section>
 
       {/* Chat Section */}
-      <section id="chat" className="py-16 px-4 relative bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
+      <section id="chat" className="py-16 px-4 relative bg-cover bg-center" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
   <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
         <div className="container mx-auto max-w-3xl relative z-10">
           <div className="text-center mb-12">
@@ -356,7 +356,7 @@ export default function GetBrainLanding() {
       </section>
 
       {/* Process Section */}
-      <section id="processo" className="py-16 px-4">
+      <section id="processo" className="py-16 px-4 bg-slate-800/50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Nosso Processo</h2>

@@ -155,15 +155,15 @@ export default function SolucoesPage() {
   <div className="container mx-auto px-4 py-4 flex items-center justify-between">
   
 <Link href="/">
-  <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto cursor-pointer" />
+  <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto cursor-pointer" />
 </Link>
 
     <nav className="hidden md:flex items-center space-x-8">
   <a href="/" className="hover:text-blue-400 transition-colors">Início</a>
-  <button className="hover:text-blue-400 transition-colors cursor-pointer">Por que a Get Brain?</button>
+  <a href="/#vantagens" className="hover:text-blue-400 transition-colors cursor-pointer">Por que a Get Brain?</a>
   <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
-  <button className="hover:text-blue-400 transition-colors cursor-pointer">Processo</button>
-  <button className="hover:text-blue-400 transition-colors cursor-pointer">Contato</button>
+  <a href="/#processo" className="hover:text-blue-400 transition-colors cursor-pointer">Processo</a>
+  <a href="/#contato" className="hover:text-blue-400 transition-colors cursor-pointer">Contato</a>
 </nav>
 
 
