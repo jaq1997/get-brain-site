@@ -148,7 +148,52 @@ export default function SolucoesPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      {/* Todo o layout e componentes da página permanecem aqui */}
+      {/* Header */}
+      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/">
+            <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto cursor-pointer" />
+          </Link>
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="/" className="hover:text-blue-400 transition-colors">Início</a>
+            <a href="/#vantagens" className="hover:text-blue-400 transition-colors cursor-pointer">Por que a Get Brain?</a>
+            <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
+            <a href="/#processo" className="hover:text-blue-400 transition-colors cursor-pointer">Processo</a>
+            <a href="/#contato" className="hover:text-blue-400 transition-colors cursor-pointer">Contato</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-400 mb-6">Todas as nossas soluções de IA</h1>
+          <p className="text-xl text-slate-300">Descubra como cada uma das nossas soluções pode transformar seu negócio.</p>
+        </div>
+      </section>
+
+      {/* Solutions Grid */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto grid gap-12">
+          {solutions.map((solution, index) => (
+            <Card key={index} className="bg-slate-800 border-slate-700">
+              <div className="p-8">
+                <div className="flex items-center mb-6">
+                  {solution.icon}
+                  <h2 className="text-2xl font-bold text-white ml-4">{solution.title}</h2>
+                </div>
+                <p className="text-slate-300 mb-6">{solution.description}</p>
+                <span className="text-2xl font-bold text-blue-400">{solution.pricing}</span>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#142544] border-t border-slate-700 py-12 px-4 text-center">
+        <p className="text-slate-400">&copy; 2025 GetBrain. Todos os direitos reservados.</p>
+      </footer>
     </div>
   )
 }
