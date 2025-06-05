@@ -75,7 +75,7 @@ export default function GetBrainLanding() {
       icon: <Brain className="w-8 h-8 text-blue-500" />,
     },
     {
-      title: "Get Files", // Renomeado de Get Audio
+      title: "Get Files", // Mantido como Get Files conforme seu código original
       description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
       icon: <Mic className="w-8 h-8 text-blue-500" />,
     },
@@ -206,94 +206,95 @@ export default function GetBrainLanding() {
       </header>
 
       {/* Hero Section com Imagem de Fundo */}
-      <section className="pt-24 pb-8 px-4 relative min-h-[70vh] flex items-center">
-        {/* Imagem de fundo com overlay */}
-        <div className="absolute inset-0 z-0">
-          <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-slate-900/70"></div>
-        </div>
+      <section className="pt-24 pb-8 px-4 relative h-screen flex items-center">
+  {/* Imagem de fundo com overlay */}
+  <div className="absolute inset-0 z-0">
+    <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
+    <div className="absolute inset-0 bg-slate-900/70"></div>
+  </div>
 
-        <div className="container mx-auto text-center relative z-10">
-          <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Tecnologia de IA de Ponta</Badge>
+  <div className="container mx-auto text-center relative z-10">
+    <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Tecnologia de IA de Ponta</Badge>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Transforme sua empresa
-            <br />
-            com <span className="text-blue-400">agentes de IA</span>
-            <br />
-            customizados
-          </h1>
+    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+      Transforme sua empresa
+      <br />
+      com <span className="text-blue-400">agentes de IA</span>
+      <br />
+      customizados
+    </h1>
 
-          <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            Automatize processos, aumente a produtividade e reduza custos com agentes de IA projetados especificamente
-            para o seu negócio.
-          </p>
+    <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+      Automatize processos, aumente a produtividade e reduza custos com agentes de IA projetados especificamente
+      para o seu negócio.
+    </p>
 
-          <a href="/solucoes">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
-              Conhecer nossas soluções
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </a>
+    <a href="/solucoes">
+      <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+        Conhecer nossas soluções
+        <ArrowRight className="ml-2 w-5 h-5" />
+      </Button>
+    </a>
 
-          <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span>+100 empresas já utilizam nossos agentes de IA</span>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
+      <div className="flex items-center space-x-2">
+        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+        <span>+100 empresas já utilizam nossos agentes de IA</span>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Chat Section */}
-      <section id="chat" className="py-8 px-4 relative bg-cover bg-center" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
-        <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
-        <div className="container mx-auto max-w-3xl relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assistant</h2>
-            <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
-          </div>
+      <section id="chat" className="py-8 px-4 relative bg-cover bg-center bg-fixed min-h-[70vh]" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
+  <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
+  <div className="container mx-auto max-w-3xl relative z-10">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assistant</h2>
+      <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
+    </div>
 
-          <div className="bg-[#142544] rounded-lg shadow-xl overflow-hidden border border-slate-700">
-            {/* Chat Header */}
-            <div className="bg-blue-600 px-6 py-4 flex items-center space-x-3">
-              <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
-                {/* Placeholder for Assistant Icon */}
-                <Brain className="w-6 h-6 text-blue-300" />
-              </div>
-              <h3 className="text-xl font-semibold text-white">Get Assistant IA</h3>
-            </div>
+    {/* Chat Box */}
+    <div className="bg-[#142544] rounded-lg shadow-xl overflow-hidden border border-slate-700">
+      {/* Chat Header */}
+      <div className="bg-blue-600 px-6 py-4 flex items-center space-x-3">
+        <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
+          <Brain className="w-6 h-6 text-blue-300" />
+        </div>
+        <h3 className="text-xl font-semibold text-white">Get Assistant IA</h3>
+      </div>
 
-            {/* Chat Body */}
-            <div className="p-6 h-80 overflow-y-auto flex flex-col space-y-4">
-              {/* Placeholder Message */}
-              <div className="flex">
-                <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
-                  <p>Olá! Eu sou Get Assistant, sua assistente de IA. Como posso ajudar você hoje?</p>
-                  <span className="text-xs text-slate-400 block text-right mt-1">17:14</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Chat Input */}
-            <div className="bg-slate-800 p-4 border-t border-slate-700">
-              <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
-                <input
-                  type="text"
-                  placeholder="Envie uma mensagem para Get Assistant..."
-                  className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
-                  disabled // Disable input as it's frontend only for now
-                />
-                <button className="ml-3 text-slate-400 hover:text-blue-400 cursor-not-allowed" disabled>
-                  {/* Placeholder for Send Icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
-                </button>
-              </div>
-              <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
-            </div>
+      {/* Chat Body */}
+      <div className="p-6 h-80 overflow-y-auto flex flex-col space-y-4">
+        <div className="flex">
+          <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
+            <p>Olá! Eu sou Get Assistant, sua assistente de IA. Como posso ajudar você hoje?</p>
+            <span className="text-xs text-slate-400 block text-right mt-1">17:14</span>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Chat Input Restaurado */}
+      <div className="bg-slate-800 p-4 border-t border-slate-700">
+        <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
+          <input
+            type="text"
+            placeholder="Envie uma mensagem para Get Assistant..."
+            className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
+          />
+          <button className="ml-3 text-slate-400 hover:text-blue-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m3 3 3 9-3 9 19-9Z"/>
+              <path d="M6 12h16"/>
+            </svg>
+          </button>
+        </div>
+        <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Solutions Section */}
       <section id="solucoes" className="py-16 px-4 bg-slate-800/50">
@@ -511,11 +512,11 @@ export default function GetBrainLanding() {
               <div className="space-y-2 text-slate-300">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>(21) 97381-8244</span>
+                  <span>(21) 99016-8793</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" />
-                  <span>daniel@getbrain.com.br</span>
+                  <span>contato@getbrain.com.br</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />
