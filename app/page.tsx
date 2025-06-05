@@ -52,34 +52,33 @@ export default function GetBrainLanding() {
   }, [])
 
   const solutions = [
-    {
-      title: "Get Group",
-      description:
-        "IA inteligente para resumir automaticamente conversas de grupos do WhatsApp, destacando pontos importantes.",
-      icon: <UsersRound className="w-8 h-8 text-blue-500" />,
-    },
-    {
-      title: "Get SDR",
-      description: "IA de atendimento especializada para WhatsApp que converte leads e automatiza vendas 24/7.",
-      icon: <Bot className="w-8 h-8 text-blue-500" />,
-    },
-    {
-      title: "Get Build",
-      description:
-        "Criação sob demanda de soluções de IA personalizadas para suas necessidades específicas de negócio.",
-      icon: <Wrench className="w-8 h-8 text-blue-500" />,
-    },
-    {
-      title: "Get Assistant",
-      description: "Assistente de IA personalizado integrado à sua plataforma para suporte e automação inteligente.",
-      icon: <Brain className="w-8 h-8 text-blue-500" />,
-    },
-    {
-      title: "Get Files", // Mantido como Get Files conforme seu código original
-      description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
-      icon: <Mic className="w-8 h-8 text-blue-500" />,
-    },
-  ]
+  {
+    title: "Get Assistant",
+    description: "Assistente de IA personalizado integrado à sua plataforma para suporte e automação inteligente.",
+    icon: <Brain className="w-8 h-8 text-blue-500" />,
+  },
+  {
+    title: "Get Files",
+    description: "IA avançada para transcrever automaticamente áudios de WhatsApp com alta precisão e velocidade.",
+    icon: <Mic className="w-8 h-8 text-blue-500" />,
+  },
+  {
+    title: "Get SDR",
+    description: "IA de atendimento especializada para WhatsApp que converte leads e automatiza vendas 24/7.",
+    icon: <Bot className="w-8 h-8 text-blue-500" />,
+  },
+  {
+    title: "Get Group",
+    description: "IA inteligente para resumir automaticamente conversas de grupos do WhatsApp, destacando pontos importantes.",
+    icon: <UsersRound className="w-8 h-8 text-blue-500" />,
+  },
+  {
+    title: "Get Build",
+    description: "Criação sob demanda de soluções de IA personalizadas para suas necessidades específicas de negócio.",
+    icon: <Wrench className="w-8 h-8 text-blue-500" />,
+  },
+];
+
 
   const differentials = [
     {
