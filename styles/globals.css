@@ -92,3 +92,78 @@ body {
     @apply bg-background text-foreground;
   }
 }
+/* Adicione este código ao final do seu arquivo app/globals.css */
+
+/* Estilos para padronizar os botões do header GetBrain */
+.header-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Força o mesmo tamanho para ambos os botões do header */
+.header-button-getbrain {
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  min-width: fit-content !important;
+}
+
+/* Estilo específico para o botão "Agendar Diagnóstico" */
+.header-button-primary {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: 2px solid #2563eb !important;
+}
+
+.header-button-primary:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  color: white !important;
+}
+
+/* Estilo específico para o botão "Área dos Clientes" */
+.header-button-outline {
+  background-color: transparent !important;
+  color: white !important;
+  border: 2px solid white !important;
+}
+
+.header-button-outline:hover {
+  background-color: #60a5fa !important;
+  border-color: #60a5fa !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3) !important;
+}
+
+.header-button-outline:active {
+  transform: translateY(0) !important;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .header-button-getbrain {
+    width: 100% !important;
+    margin-top: 8px !important;
+  }
+  
+  .header-buttons-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+}
+

@@ -21,6 +21,7 @@ import {
   UsersRound,
   Bot,
   Wrench,
+  User,
 } from "lucide-react"
 
 export default function GetBrainLanding() {
@@ -159,10 +160,23 @@ export default function GetBrainLanding() {
             </button>
           </nav>
 
-          <div className="flex items-center space-x-4">
-            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
-              <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
-            </a>
+          <div className="flex items-center space-x-3">
+            {/* Botões lado a lado no desktop */}
+            <div className="hidden md:flex header-buttons-container">
+              <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+                <Button className="header-button-getbrain header-button-primary">
+                  Agendar Diagnóstico
+                </Button>
+              </a>
+              
+              {/* Novo botão Dashboard/Área dos Clientes */}
+              <a href="/dashboard">
+                <Button className="header-button-getbrain header-button-outline">
+                  <User className="w-4 h-4" />
+                  Área dos Clientes
+                </Button>
+              </a>
+            </div>
 
             {/* Mobile Menu Button */}
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -197,7 +211,16 @@ export default function GetBrainLanding() {
                 Contato
               </button>
               <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
+                <Button className="header-button-getbrain header-button-primary">
+                  Agendar Diagnóstico
+                </Button>
+              </a>
+              {/* Botão Dashboard no menu mobile */}
+              <a href="/dashboard">
+                <Button className="header-button-getbrain header-button-outline">
+                  <User className="w-4 h-4" />
+                  Área dos Clientes
+                </Button>
               </a>
             </nav>
           </div>
@@ -393,143 +416,116 @@ export default function GetBrainLanding() {
                     </div>
                   </div>
                 </div>
+
+                {/* Linha conectora (apenas para desktop) */}
+                {index < processSteps.length - 1 && (
+                  <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 transform translate-x-10 z-0"></div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
-      
-      {/* CTA Form Section */}
+
+      {/* Contact Section */}
       <section id="contato" className="py-16 px-4">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para começar?</h2>
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Entre em Contato</h2>
             <p className="text-xl text-slate-300">
-              Entre em contato conosco e descubra como podemos transformar seu negócio
+              Pronto para transformar seu negócio? Vamos conversar sobre suas necessidades
             </p>
           </div>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardContent className="p-6">
-              <form className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Input
-                    placeholder="Nome completo"
-                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                  />
-                  <Input
-                    placeholder="E-mail corporativo"
-                    type="email"
-                    className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                  />
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card className="bg-slate-800 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-white">Envie sua mensagem</CardTitle>
+                <CardDescription className="text-slate-300">
+                  Preencha o formulário e entraremos em contato em breve
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <Input placeholder="Nome" className="bg-slate-700 border-slate-600 text-white" />
+                  <Input placeholder="Sobrenome" className="bg-slate-700 border-slate-600 text-white" />
                 </div>
-                <Input
-                  placeholder="Empresa"
-                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                />
-                <Input
-                  placeholder="Telefone"
-                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                />
+                <Input placeholder="Email" type="email" className="bg-slate-700 border-slate-600 text-white" />
+                <Input placeholder="Telefone" className="bg-slate-700 border-slate-600 text-white" />
                 <Textarea
-                  placeholder="Conte-nos sobre seu projeto ou necessidade"
-                  className="bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
-                  rows={4}
+                  placeholder="Descreva seu projeto ou necessidade"
+                  className="bg-slate-700 border-slate-600 text-white min-h-[120px]"
                 />
-                <a href="mailto:contato@getbrain.com.br">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">Solicitar Demonstração</Button>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  Enviar Mensagem
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-6 text-white">Informações de Contato</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Phone className="w-5 h-5 text-blue-500" />
+                    <span className="text-slate-300">+55 (21) 99016-8793</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Mail className="w-5 h-5 text-blue-500" />
+                    <span className="text-slate-300">contato@getbrain.com.br</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="w-5 h-5 text-blue-500" />
+                    <span className="text-slate-300">Rio de Janeiro, RJ - Brasil</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-6 text-white">Redes Sociais</h3>
+                <div className="flex space-x-4">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                  >
+                    <Instagram className="w-5 h-5 text-white" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-slate-800 p-6 rounded-lg border border-slate-700">
+                <h4 className="font-semibold mb-2 text-white">Agende uma Demonstração</h4>
+                <p className="text-slate-300 text-sm mb-4">
+                  Veja na prática como nossos agentes de IA podem transformar seu negócio
+                </p>
+                <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                    Agendar via WhatsApp
+                  </Button>
                 </a>
-              </form>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#142544] border-t border-slate-700 py-12 px-4">
+      <footer className="bg-slate-800 border-t border-slate-700 py-8 px-4">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto mb-4" />
-              <p className="text-slate-300 mb-4">Transformando empresas através da inteligência artificial</p>
-              <div className="flex space-x-4">
-                <a href="https://www.instagram.com/getbrainbrasil/" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="w-5 h-5 text-slate-400 hover:text-blue-400 cursor-pointer" />
-                </a>
-              </div>
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="mb-4 md:mb-0">
+              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto" />
             </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Soluções</h4>
-              <ul className="space-y-2 text-slate-300">
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Assistant
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Files
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get SDR
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Group
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Get Build
-                  </a>
-                </li>
-              </ul>
+            <div className="text-slate-400 text-sm">
+              © 2025 GetBrain. Todos os direitos reservados.
             </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Empresa</h4>
-              <ul className="space-y-2 text-slate-300">
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Políticas
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-blue-400">
-                    Termos de uso
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Contato</h4>
-              <div className="space-y-2 text-slate-300">
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2" />
-                  <span>(21) 99016-8793</span>
-                </div>
-                <div className="flex items-center">
-                  <Mail className="w-4 h-4 mr-2" />
-                  <span>contato@getbrain.com.br</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span>Rio de Janeiro, RJ</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-700 pt-8 text-center text-slate-400">
-            <p>&copy; 2025 GetBrain. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
     </div>
   )
 }
+
