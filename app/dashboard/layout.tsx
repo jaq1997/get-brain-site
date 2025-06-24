@@ -100,7 +100,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <AvatarImage src="/placeholder.svg?height=32&width=32" />
                     <AvatarFallback className="bg-blue-600">DB</AvatarFallback>
                   </Avatar>
-                  <span className="hidden md:inline-block">Daniel Braga</span>
+                  <span className="hidden md:inline-block">Daniel Henrique</span>
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
