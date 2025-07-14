@@ -101,12 +101,12 @@ body {
   gap: 12px;
 }
 
-/* Força o mesmo tamanho para ambos os botões do header */
+/* Força o mesmo tamanho para ambos os botões do header (AJUSTADO) */
 .header-button-getbrain {
-  height: 40px !important;
-  min-height: 40px !important;
-  max-height: 40px !important;
-  padding: 8px 16px !important;
+  height: 36px !important; /* Reduzido de 40px */
+  min-height: 36px !important;
+  max-height: 36px !important;
+  padding: 6px 12px !important; /* Reduzido de 8px 16px */
   font-size: 14px !important;
   font-weight: 500 !important;
   display: inline-flex !important;
@@ -166,4 +166,3 @@ body {
     gap: 8px;
   }
 }
-

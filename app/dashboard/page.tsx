@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import {
   TrendingUp,
   Users,
@@ -24,12 +26,41 @@ export default function Dashboard() {
   const [period, setPeriod] = useState("month")
 
   // Dados simulados para os gráficos
-  const usageData = {
-    week: [65, 75, 70, 90, 85, 60, 70],
-    month: [
-      65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40,
+  const chartData = {
+    week: [
+      { day: "Seg", usage: 65 },
+      { day: "Ter", usage: 75 },
+      { day: "Qua", usage: 70 },
+      { day: "Qui", usage: 90 },
+      { day: "Sex", usage: 85 },
+      { day: "Sáb", usage: 60 },
+      { day: "Dom", usage: 70 },
     ],
-    year: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56],
+    month: Array.from({ length: 30 }, (_, i) => ({
+      day: (i + 1).toString().padStart(2, '0'),
+      usage: Math.floor(Math.random() * (90 - 40 + 1)) + 40,
+    })),
+    year: [
+      { day: "Jan", usage: 65 },
+      { day: "Fev", usage: 59 },
+      { day: "Mar", usage: 80 },
+      { day: "Abr", usage: 81 },
+      { day: "Mai", usage: 56 },
+      { day: "Jun", usage: 55 },
+      { day: "Jul", usage: 40 },
+      { day: "Ago", usage: 65 },
+      { day: "Set", usage: 59 },
+      { day: "Out", usage: 80 },
+      { day: "Nov", usage: 81 },
+      { day: "Dez", usage: 56 },
+    ],
+  }
+
+  const chartConfig = {
+    usage: {
+      label: "Uso (%)",
+      color: "hsl(221, 83%, 53%)", // Cor do gráfico ajustada para azul
+    },
   }
 
   const activeProducts = [
@@ -82,7 +113,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Cards de métricas - Layout com altura fixa para badges */}
+      {/* Cards de métricas */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader className="pb-3">
@@ -151,7 +182,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Gráfico de uso - Com dados reais */}
+      {/* Gráfico de uso - Com Recharts */}
       <Card className="bg-slate-800 border-slate-700">
         <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between">
           <div>
@@ -159,78 +190,46 @@ export default function Dashboard() {
             <CardDescription className="text-slate-300">Monitoramento de uso dos seus produtos</CardDescription>
           </div>
           <Tabs defaultValue="month" value={period} onValueChange={setPeriod} className="mt-4 md:mt-0">
-            <TabsList className="bg-slate-700">
-              <TabsTrigger value="week" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsList className="bg-slate-200 text-slate-900">
+              <TabsTrigger value="week" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                 Semana
               </TabsTrigger>
-              <TabsTrigger value="month" className="data-[state=active]:bg-blue-600 text-slate-300">
+              <TabsTrigger value="month" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                 Mês
               </TabsTrigger>
-              <TabsTrigger value="year" className="data-[state=active]:bg-blue-600 text-slate-300">
+              <TabsTrigger value="year" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                 Ano
               </TabsTrigger>
             </TabsList>
           </Tabs>
         </CardHeader>
         <CardContent>
-          <div className="h-80 w-full overflow-hidden">
-            {/* Gráfico com container que previne overflow */}
-            <div className="h-full w-full flex items-end justify-between space-x-1 px-2">
-              {usageData[period as keyof typeof usageData].slice(0, 28).map((value, index) => (
-                <div key={index} className="flex flex-col items-center space-y-1 flex-1 min-w-0">
-                  <div className="text-xs text-slate-400 mb-1 truncate">{value}%</div>
-                  <div
-                    className="bg-blue-500 rounded-t-md w-full min-h-[20px] relative group cursor-pointer hover:bg-blue-400 transition-colors"
-                    style={{ height: `${Math.max(value * 2.5, 20)}px` }}
-                  >
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-slate-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      {value}%
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 flex justify-between text-xs text-slate-400 px-2">
-              {period === "week" && (
-                <>
-                  <span>Seg</span>
-                  <span>Ter</span>
-                  <span>Qua</span>
-                  <span>Qui</span>
-                  <span>Sex</span>
-                  <span>Sáb</span>
-                  <span>Dom</span>
-                </>
-              )}
-              {period === "month" && (
-                <>
-                  <span>01</span>
-                  <span>05</span>
-                  <span>10</span>
-                  <span>15</span>
-                  <span>20</span>
-                  <span>25</span>
-                  <span>30</span>
-                </>
-              )}
-              {period === "year" && (
-                <>
-                  <span>Jan</span>
-                  <span>Mar</span>
-                  <span>Mai</span>
-                  <span>Jul</span>
-                  <span>Set</span>
-                  <span>Nov</span>
-                </>
-              )}
-            </div>
-          </div>
+          <ChartContainer config={chartConfig} className="h-80 w-full">
+            <BarChart
+              accessibilityLayer
+              data={chartData[period as keyof typeof chartData]}
+              margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
+            >
+              <CartesianGrid vertical={false} strokeDasharray="3 3" />
+              <XAxis
+                dataKey="day"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={10}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dot" />}
+              />
+              <Bar dataKey="usage" fill="var(--color-usage)" radius={4} />
+            </BarChart>
+          </ChartContainer>
         </CardContent>
       </Card>
 
-      {/* Produtos ativos e recomendados - Layout melhorado */}
+      {/* Produtos ativos e recomendados */}
       <div className="grid gap-6 md:grid-cols-2">
-        {/* Produtos ativos */}
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
             <CardTitle className="text-white">Produtos Ativos</CardTitle>
@@ -271,7 +270,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Produtos recomendados */}
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader>
             <CardTitle className="text-white">Produtos Recomendados</CardTitle>

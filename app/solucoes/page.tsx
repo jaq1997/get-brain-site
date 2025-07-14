@@ -21,6 +21,7 @@ import {
   Mail,
   MapPin,
   Instagram,
+  User,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -28,7 +29,6 @@ export default function SolucoesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  // Detectar scroll para mudar o estilo do header
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -43,18 +43,6 @@ export default function SolucoesPage() {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
-
-  // Função para scroll suave
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-    setIsMenuOpen(false) // Fecha o menu mobile após clicar
-  }
 
   const solutions = [
     {
@@ -170,84 +158,76 @@ export default function SolucoesPage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      {/* Header - Igual ao da página principal */}
       <header
         className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? "bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700" : "bg-transparent"}`}
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          {/* Logo GetBrain */}
-          <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto" />
+          <Link href="/">
+            <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-10 w-auto" />
+          </Link>
+          
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-4">
+              <Link href="/#vantagens" className="hover:text-blue-400 transition-colors cursor-pointer">
+                Por que a Get Brain?
+              </Link>
+              <Link href="/solucoes" className="hover:text-blue-400 transition-colors text-blue-400">
+                Soluções
+              </Link>
+              <Link href="/#processo" className="hover:text-blue-400 transition-colors cursor-pointer">
+                Processo
+              </Link>
+              <Link href="/#contato" className="hover:text-blue-400 transition-colors cursor-pointer">
+                Contato
+              </Link>
+            </nav>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {/* Botão "Início" primeiro */}
-            <Link href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
-              Início
-            </Link>
-
-            {/* Botão "Vantagens" depois */}
-            <Link href="/#vantagens" className="hover:text-blue-400 transition-colors cursor-pointer">
-              Por que a Get Brain?
-            </Link>
-
-            <Link href="/solucoes" className="hover:text-blue-400 transition-colors text-blue-400">
-              Soluções
-            </Link>
-
-            <Link href="/#processo" className="hover:text-blue-400 transition-colors cursor-pointer">
-              Processo
-            </Link>
-
-            <Link href="/#contato" className="hover:text-blue-400 transition-colors cursor-pointer">
-              Contato
-            </Link>
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
-              <Button className="hidden md:block bg-blue-600 hover:bg-blue-700">Agendar Diagnóstico</Button>
-            </a>
-
-            {/* Mobile Menu Button */}
-            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
+            <div className="flex items-center gap-3">
+                <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+                <Button className="header-button-getbrain header-button-primary">
+                    Agendar Diagnóstico
+                </Button>
+                </a>
+                <a href="/dashboard">
+                <Button className="header-button-getbrain header-button-outline">
+                    <User className="w-4 h-4" />
+                    Área dos Clientes
+                </Button>
+                </a>
+            </div>
           </div>
+          
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-[#142544] border-t border-slate-600">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              <Link href="/" className="hover:text-blue-400 transition-colors text-left">
-                Início
-              </Link>
-
               <Link href="/#vantagens" className="hover:text-blue-400 transition-colors text-left">
                 Por que a Get Brain?
               </Link>
-
               <Link href="/solucoes" className="hover:text-blue-400 transition-colors text-blue-400 text-left">
                 Soluções
               </Link>
-
               <Link href="/#processo" className="hover:text-blue-400 transition-colors text-left">
                 Processo
               </Link>
-
               <Link href="/#contato" className="hover:text-blue-400 transition-colors text-left">
                 Contato
               </Link>
-
               <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-blue-600 hover:bg-blue-700 w-full">Agendar Diagnóstico</Button>
+              </a>
+               <a href="/dashboard">
+                <Button className="w-full" variant="outline">Área dos Clientes</Button>
               </a>
             </nav>
           </div>
         )}
       </header>
 
-      {/* Hero Section - Com padding-top para compensar o header fixo */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto text-center">
           <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Soluções Completas</Badge>
@@ -260,14 +240,12 @@ export default function SolucoesPage() {
         </div>
       </section>
 
-      {/* Solutions Grid */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="grid gap-12">
             {solutions.map((solution, index) => (
               <Card key={index} className="bg-slate-800 border-slate-700 overflow-hidden">
                 <div className="grid md:grid-cols-2 gap-8">
-                  {/* Left Column - Info */}
                   <div className="p-8">
                     <div className="flex items-center mb-6">
                       {solution.icon}
@@ -306,7 +284,6 @@ export default function SolucoesPage() {
                     </div>
                   </div>
 
-                  {/* Right Column - Features */}
                   <div className="bg-slate-700/50 p-8">
                     <h4 className="text-lg font-semibold mb-6 text-white">Funcionalidades:</h4>
                     <div className="grid gap-4">
@@ -333,7 +310,6 @@ export default function SolucoesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 px-4 bg-slate-800/50">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -363,7 +339,6 @@ export default function SolucoesPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#142544] border-t border-slate-700 py-12 px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">

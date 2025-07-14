@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -41,12 +42,11 @@ export default function GetBrainLanding() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10) // Define como 'scrolled' após rolar 10 pixels
+      setIsScrolled(window.scrollY > 10)
     }
 
     window.addEventListener("scroll", handleScroll)
 
-    // Limpa o event listener ao desmontar o componente
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
@@ -136,56 +136,46 @@ export default function GetBrainLanding() {
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#142544]/95 backdrop-blur-sm border-b border-slate-700' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          {/* Logo GetBrain */}
-          <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
+          <Link href="/">
+            <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-12 w-auto" />
+          </Link>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {/* Botão "Início" primeiro */}
-            <a href="/" className="hover:text-blue-400 transition-colors cursor-pointer">
-              Início
-            </a>
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-4">
+              <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
+                Por que a Get Brain?
+              </button>
+              <button onClick={() => scrollToSection("solucoes")} className="hover:text-blue-400 transition-colors cursor-pointer">
+                Soluções
+              </button>
+              <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
+                Processo
+              </button>
+              <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
+                Contato
+              </button>
+            </nav>
 
-            {/* Botão "Vantagens" depois */}
-            <button onClick={() => scrollToSection("vantagens")} className="hover:text-blue-400 transition-colors cursor-pointer">
-              Por que a Get Brain?
-            </button>
-
-            <a href="/solucoes" className="hover:text-blue-400 transition-colors">Soluções</a>
-            <button onClick={() => scrollToSection("processo")} className="hover:text-blue-400 transition-colors cursor-pointer">
-              Processo
-            </button>
-            <button onClick={() => scrollToSection("contato")} className="hover:text-blue-400 transition-colors cursor-pointer">
-              Contato
-            </button>
-          </nav>
-
-          <div className="flex items-center space-x-3">
-            {/* Botões lado a lado no desktop */}
-            <div className="hidden md:flex header-buttons-container">
-              <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
+            <div className="flex items-center gap-3">
+                <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
                 <Button className="header-button-getbrain header-button-primary">
-                  Agendar Diagnóstico
+                    Agendar Diagnóstico
                 </Button>
-              </a>
-              
-              {/* Novo botão Dashboard/Área dos Clientes */}
-              <a href="/dashboard">
+                </a>
+                <a href="/dashboard">
                 <Button className="header-button-getbrain header-button-outline">
-                  <User className="w-4 h-4" />
-                  Área dos Clientes
+                    <User className="w-4 h-4" />
+                    Área dos Clientes
                 </Button>
-              </a>
+                </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
           </div>
+          
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-[#142544] border-t border-slate-600">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
@@ -195,9 +185,12 @@ export default function GetBrainLanding() {
               >
                 Por que a Get Brain?
               </button>
-              <a href="/solucoes" className="hover:text-blue-400 transition-colors">
+              <button
+                onClick={() => scrollToSection("solucoes")}
+                className="hover:text-blue-400 transition-colors text-left"
+              >
                 Soluções
-              </a>
+              </button>
               <button
                 onClick={() => scrollToSection("processo")}
                 className="hover:text-blue-400 transition-colors text-left"
@@ -215,7 +208,6 @@ export default function GetBrainLanding() {
                   Agendar Diagnóstico
                 </Button>
               </a>
-              {/* Botão Dashboard no menu mobile */}
               <a href="/dashboard">
                 <Button className="header-button-getbrain header-button-outline">
                   <User className="w-4 h-4" />
@@ -227,305 +219,284 @@ export default function GetBrainLanding() {
         )}
       </header>
 
-      {/* Hero Section com Imagem de Fundo */}
       <section className="pt-24 pb-8 px-4 relative h-screen flex items-center">
-  {/* Imagem de fundo com overlay */}
-  <div className="absolute inset-0 z-0">
-    <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
-    <div className="absolute inset-0 bg-slate-900/70"></div>
-  </div>
+        <div className="absolute inset-0 z-0">
+            <img src="/images/hero-background.png" alt="IA e Tecnologia" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-slate-900/70"></div>
+        </div>
 
-  <div className="container mx-auto text-center relative z-10">
-    <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Tecnologia de IA de Ponta</Badge>
+        <div className="container mx-auto text-center relative z-10">
+            <Badge className="mb-6 bg-blue-600/20 text-blue-400 border-blue-600/30">Tecnologia de IA de Ponta</Badge>
 
-    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-      Transforme sua empresa
-      <br />
-      com <span className="text-blue-400">agentes de IA</span>
-      <br />
-      customizados
-    </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Transforme sua empresa
+            <br />
+            com <span className="text-blue-400">agentes de IA</span>
+            <br />
+            customizados
+            </h1>
 
-    <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-      Automatize processos, aumente a produtividade e reduza custos com agentes de IA projetados especificamente
-      para o seu negócio.
-    </p>
+            <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+            Automatize processos, aumente a produtividade e reduza custos com agentes de IA projetados especificamente
+            para o seu negócio.
+            </p>
 
-    <a href="/solucoes">
-      <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
-        Conhecer nossas soluções
-        <ArrowRight className="ml-2 w-5 h-5" />
-      </Button>
-    </a>
+            <a href="/solucoes">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+                Conhecer nossas soluções
+                <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            </a>
 
-    <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
-      <div className="flex items-center space-x-2">
-        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-        <span>+100 empresas já utilizam nossos agentes de IA</span>
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="mt-12 flex items-center justify-center space-x-8 text-slate-400">
+            <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>+100 empresas já utilizam nossos agentes de IA</span>
+            </div>
+            </div>
+        </div>
+        </section>
 
-      {/* Chat Section */}
       <section id="chat" className="py-8 px-4 relative bg-cover bg-center bg-fixed min-h-[70vh]" style={{ backgroundImage: 'url(/images/chat-background.jpg)' }}>
-  <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
-  <div className="container mx-auto max-w-3xl relative z-10">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assistant</h2>
-      <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
-    </div>
+        <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
+        <div className="container mx-auto max-w-3xl relative z-10">
+            <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fale com Get Assistant</h2>
+            <p className="text-xl text-slate-300">Converse com nosso assistente de IA especializado em soluções inteligentes e automações.</p>
+            </div>
 
-    {/* Chat Box */}
-    <div className="bg-[#142544] rounded-lg shadow-xl overflow-hidden border border-slate-700">
-      {/* Chat Header */}
-      <div className="bg-blue-600 px-6 py-4 flex items-center space-x-3">
-        <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
-          <Brain className="w-6 h-6 text-blue-300" />
+            <div className="bg-[#142544] rounded-lg shadow-xl overflow-hidden border border-slate-700">
+            <div className="bg-blue-600 px-6 py-4 flex items-center space-x-3">
+                <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">
+                <Brain className="w-6 h-6 text-blue-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-white">Get Assistant IA</h3>
+            </div>
+
+            <div className="p-6 h-80 overflow-y-auto flex flex-col space-y-4">
+                <div className="flex">
+                <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
+                    <p>Olá! Eu sou Get Assistant, sua assistente de IA. Como posso ajudar você hoje?</p>
+                    <span className="text-xs text-slate-400 block text-right mt-1">17:14</span>
+                </div>
+                </div>
+            </div>
+
+            <div className="bg-slate-800 p-4 border-t border-slate-700">
+                <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
+                <input
+                    type="text"
+                    placeholder="Envie uma mensagem para Get Assistant..."
+                    className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
+                />
+                <button className="ml-3 text-slate-400 hover:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m3 3 3 9-3 9 19-9Z"/>
+                    <path d="M6 12h16"/>
+                    </svg>
+                </button>
+                </div>
+                <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
+            </div>
+            </div>
         </div>
-        <h3 className="text-xl font-semibold text-white">Get Assistant IA</h3>
-      </div>
+        </section>
 
-      {/* Chat Body */}
-      <div className="p-6 h-80 overflow-y-auto flex flex-col space-y-4">
-        <div className="flex">
-          <div className="bg-slate-700 rounded-lg p-3 max-w-xs text-slate-200">
-            <p>Olá! Eu sou Get Assistant, sua assistente de IA. Como posso ajudar você hoje?</p>
-            <span className="text-xs text-slate-400 block text-right mt-1">17:14</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Chat Input Restaurado */}
-      <div className="bg-slate-800 p-4 border-t border-slate-700">
-        <div className="flex items-center bg-slate-700 rounded-lg px-3 py-2">
-          <input
-            type="text"
-            placeholder="Envie uma mensagem para Get Assistant..."
-            className="flex-grow bg-transparent text-white placeholder-slate-400 focus:outline-none"
-          />
-          <button className="ml-3 text-slate-400 hover:text-blue-400">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m3 3 3 9-3 9 19-9Z"/>
-              <path d="M6 12h16"/>
-            </svg>
-          </button>
-        </div>
-        <p className="text-xs text-slate-500 mt-2 text-center">&copy; 2025 | O Agente de IA da GetBrain pode cometer erros. Considere verificar informações importantes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      {/* Solutions Section */}
       <section id="solucoes" className="py-16 px-4 bg-slate-800/50">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+            <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossas Soluções</h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Descubra como nossa tecnologia pode revolucionar diferentes áreas do seu negócio
+                Descubra como nossa tecnologia pode revolucionar diferentes áreas do seu negócio
             </p>
-          </div>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {solutions.map((solution, index) => (
-              <Card key={index} className="bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
+                <Card key={index} className="bg-slate-800 border-slate-700 hover:border-blue-500/50 transition-colors">
                 <CardHeader>
-                  <div className="mb-4">{solution.icon}</div>
-                  <CardTitle className="text-white">{solution.title}</CardTitle>
+                    <div className="mb-4">{solution.icon}</div>
+                    <CardTitle className="text-white">{solution.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-slate-300">{solution.description}</CardDescription>
+                    <CardDescription className="text-slate-300">{solution.description}</CardDescription>
                 </CardContent>
-              </Card>
+                </Card>
             ))}
-          </div>
+            </div>
 
-          <div className="text-center">
+            <div className="text-center">
             <a href="/solucoes">
-              <Button
+                <Button
                 variant="outline"
                 className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
-              >
+                >
                 Conheça todas as nossas soluções
-              </Button>
+                </Button>
             </a>
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
 
-      {/* Differentials Section */}
       <section id="vantagens" className="py-16 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+            <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Por que a Get Brain?</h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Por que escolher a GetBrain para transformar seu negócio
+                Por que escolher a GetBrain para transformar seu negócio
             </p>
-          </div>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
             {differentials.map((differential, index) => (
-              <div key={index} className="text-center">
+                <div key={index} className="text-center">
                 <div className="mb-6 flex justify-center">{differential.icon}</div>
                 <h3 className="text-xl font-semibold mb-4">{differential.title}</h3>
                 <p className="text-slate-300">{differential.description}</p>
-              </div>
+                </div>
             ))}
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
 
-      {/* Process Section */}
       <section id="processo" className="py-16 px-4 bg-slate-800/50">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+            <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Nosso Processo</h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Entenda como transformamos suas necessidades em soluções de IA eficazes
+                Entenda como transformamos suas necessidades em soluções de IA eficazes
             </p>
-          </div>
+            </div>
 
-          {/* Timeline Horizontal */}
-          <div className="grid md:grid-cols-3 gap-8 md:gap-4">
+            <div className="grid md:grid-cols-3 gap-8 md:gap-4">
             {processSteps.map((step, index) => (
-              <div key={index} className="relative">
-                {/* Container do step */}
+                <div key={index} className="relative">
                 <div className="flex flex-col items-center text-center">
-                  {/* Ícone circular */}
-                  <div className="relative z-10 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 border-4 border-slate-800 shadow-lg">
+                    <div className="relative z-10 w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mb-6 border-4 border-slate-800 shadow-lg">
                     {index === 0 && <Mic className="w-8 h-8 text-white" />}
                     {index === 1 && <UsersRound className="w-8 h-8 text-white" />}
                     {index === 2 && <Bot className="w-8 h-8 text-white" />}
-                  </div>
+                    </div>
 
-                  {/* Conteúdo do step */}
-                  <div className="max-w-xs">
+                    <div className="max-w-xs">
                     <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
                     <p className="text-slate-300 text-sm leading-relaxed mb-4">{step.description}</p>
                     <div className="p-4 bg-slate-700/50 rounded-lg border border-blue-500/30">
-                      <ul className="space-y-2 text-left">
+                        <ul className="space-y-2 text-left">
                         {step.details.map((detail, detailIndex) => (
-                          <li key={detailIndex} className="flex items-start text-slate-300 text-sm">
+                            <li key={detailIndex} className="flex items-start text-slate-300 text-sm">
                             <CheckCircle className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
                             {detail}
-                          </li>
+                            </li>
                         ))}
-                      </ul>
+                        </ul>
                     </div>
-                  </div>
+                    </div>
                 </div>
 
-                {/* Linha conectora (apenas para desktop) */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 transform translate-x-10 z-0"></div>
+                    <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-300 transform translate-x-10 z-0"></div>
                 )}
-              </div>
+                </div>
             ))}
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
 
-      {/* Contact Section */}
       <section id="contato" className="py-16 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
+            <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Entre em Contato</h2>
             <p className="text-xl text-slate-300">
-              Pronto para transformar seu negócio? Vamos conversar sobre suas necessidades
+                Pronto para transformar seu negócio? Vamos conversar sobre suas necessidades
             </p>
-          </div>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Contact Form */}
+            <div className="grid md:grid-cols-2 gap-12">
             <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
+                <CardHeader>
                 <CardTitle className="text-white">Envie sua mensagem</CardTitle>
                 <CardDescription className="text-slate-300">
-                  Preencha o formulário e entraremos em contato em breve
+                    Preencha o formulário e entraremos em contato em breve
                 </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+                </CardHeader>
+                <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <Input placeholder="Nome" className="bg-slate-700 border-slate-600 text-white" />
-                  <Input placeholder="Sobrenome" className="bg-slate-700 border-slate-600 text-white" />
+                    <Input placeholder="Nome" className="bg-slate-700 border-slate-600 text-white" />
+                    <Input placeholder="Sobrenome" className="bg-slate-700 border-slate-600 text-white" />
                 </div>
                 <Input placeholder="Email" type="email" className="bg-slate-700 border-slate-600 text-white" />
                 <Input placeholder="Telefone" className="bg-slate-700 border-slate-600 text-white" />
                 <Textarea
-                  placeholder="Descreva seu projeto ou necessidade"
-                  className="bg-slate-700 border-slate-600 text-white min-h-[120px]"
+                    placeholder="Descreva seu projeto ou necessidade"
+                    className="bg-slate-700 border-slate-600 text-white min-h-[120px]"
                 />
                 <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Enviar Mensagem
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                    Enviar Mensagem
+                    <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-              </CardContent>
+                </CardContent>
             </Card>
 
-            {/* Contact Info */}
             <div className="space-y-8">
-              <div>
+                <div>
                 <h3 className="text-xl font-semibold mb-6 text-white">Informações de Contato</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3">
                     <Phone className="w-5 h-5 text-blue-500" />
                     <span className="text-slate-300">+55 (21) 99016-8793</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
+                    </div>
+                    <div className="flex items-center space-x-3">
                     <Mail className="w-5 h-5 text-blue-500" />
                     <span className="text-slate-300">contato@getbrain.com.br</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
+                    </div>
+                    <div className="flex items-center space-x-3">
                     <MapPin className="w-5 h-5 text-blue-500" />
                     <span className="text-slate-300">Rio de Janeiro, RJ - Brasil</span>
-                  </div>
+                    </div>
                 </div>
-              </div>
+                </div>
 
-              <div>
+                <div>
                 <h3 className="text-xl font-semibold mb-6 text-white">Redes Sociais</h3>
                 <div className="flex space-x-4">
-                  <a
+                    <a
                     href="#"
                     className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                  >
+                    >
                     <Instagram className="w-5 h-5 text-white" />
-                  </a>
+                    </a>
                 </div>
-              </div>
+                </div>
 
-              <div className="bg-slate-800 p-6 rounded-lg border border-slate-700">
+                <div className="bg-slate-800 p-6 rounded-lg border border-slate-700">
                 <h4 className="font-semibold mb-2 text-white">Agende uma Demonstração</h4>
                 <p className="text-slate-300 text-sm mb-4">
-                  Veja na prática como nossos agentes de IA podem transformar seu negócio
+                    Veja na prática como nossos agentes de IA podem transformar seu negócio
                 </p>
                 <a href="https://wa.me/5521990168793" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                    <Button className="w-full bg-green-600 hover:bg-green-700">
                     Agendar via WhatsApp
-                  </Button>
+                    </Button>
                 </a>
-              </div>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
 
-      {/* Footer */}
       <footer className="bg-slate-800 border-t border-slate-700 py-8 px-4">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
-              <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto" />
+                <img src="/images/logogetbrain.svg" alt="GetBrain Logo" className="h-8 w-auto" />
             </div>
             <div className="text-slate-400 text-sm">
-              © 2025 GetBrain. Todos os direitos reservados.
+                © 2025 GetBrain. Todos os direitos reservados.
             </div>
-          </div>
+            </div>
         </div>
-      </footer>
+        </footer>
     </div>
   )
 }
-

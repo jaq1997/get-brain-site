@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -8,11 +8,25 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Search, FileText, Bot, Brain, UsersRound, Wrench, CheckCircle, Star, ArrowRight, Mic } from "lucide-react"
 
-export default function Marketplace() {
+type Product = {
+  id: string;
+  name: string;
+  icon: React.ReactElement;
+  description: string;
+  price: string;
+  category: string;
+  features: string[];
+  rating: number;
+  reviews: number;
+  popular: boolean;
+  status: string | null;
+};
+
+export default function MarketplacePage() {
   const [category, setCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
 
-  const products = [
+  const products: Product[] = [
     {
       id: "prod_1",
       name: "Get Assistant",
@@ -29,7 +43,7 @@ export default function Marketplace() {
       rating: 4.8,
       reviews: 124,
       popular: true,
-      status: "Ativo", // Já assinado
+      status: "Ativo",
     },
     {
       id: "prod_2",
@@ -47,7 +61,7 @@ export default function Marketplace() {
       rating: 4.6,
       reviews: 87,
       popular: false,
-      status: "Ativo", // Já assinado
+      status: "Ativo",
     },
     {
       id: "prod_3",
@@ -65,7 +79,7 @@ export default function Marketplace() {
       rating: 4.9,
       reviews: 156,
       popular: true,
-      status: null, // Não assinado
+      status: null,
     },
     {
       id: "prod_4",
@@ -83,7 +97,7 @@ export default function Marketplace() {
       rating: 4.5,
       reviews: 92,
       popular: false,
-      status: null, // Não assinado
+      status: null,
     },
     {
       id: "prod_5",
@@ -102,7 +116,7 @@ export default function Marketplace() {
       rating: 4.7,
       reviews: 45,
       popular: false,
-      status: null, // Não assinado
+      status: null,
     },
     {
       id: "prod_6",
@@ -120,11 +134,10 @@ export default function Marketplace() {
       rating: 4.4,
       reviews: 78,
       popular: false,
-      status: null, // Não assinado
+      status: null,
     },
   ]
 
-  // Filtrar produtos por categoria e pesquisa
   const filteredProducts = products.filter((product) => {
     const matchesCategory = category === "all" || product.category === category
     const matchesSearch =
@@ -135,7 +148,6 @@ export default function Marketplace() {
 
   return (
     <div className="space-y-8">
-      {/* Cabeçalho da página */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">Marketplace</h1>
@@ -143,7 +155,6 @@ export default function Marketplace() {
         </div>
       </div>
 
-      {/* Filtros e pesquisa */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
           <div className="relative">
@@ -158,26 +169,25 @@ export default function Marketplace() {
         </div>
         <Tabs defaultValue="all" value={category} onValueChange={setCategory} className="w-full md:w-auto">
           <TabsList className="bg-slate-800 w-full md:w-auto grid grid-cols-3 md:flex">
-            <TabsTrigger value="all" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsTrigger value="all" className="text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Todos
             </TabsTrigger>
-            <TabsTrigger value="productivity" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsTrigger value="productivity" className="text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Produtividade
             </TabsTrigger>
-            <TabsTrigger value="assistants" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsTrigger value="assistants" className="text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Assistentes
             </TabsTrigger>
-            <TabsTrigger value="sales" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsTrigger value="sales" className="text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Vendas
             </TabsTrigger>
-            <TabsTrigger value="communication" className="data-[state=active]:bg-blue-600 text-slate-300">
+            <TabsTrigger value="communication" className="text-slate-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Comunicação
             </TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
 
-      {/* Lista de produtos - Layout melhorado */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.map((product) => (
           <Card key={product.id} className="bg-slate-800 border-slate-700 overflow-hidden">
@@ -248,36 +258,6 @@ export default function Marketplace() {
           </Card>
         ))}
       </div>
-
-      {filteredProducts.length === 0 && (
-        <div className="text-center py-12">
-          <div className="text-4xl mb-4">🔍</div>
-          <h3 className="text-xl font-medium mb-2 text-white">Nenhum produto encontrado</h3>
-          <p className="text-slate-300">Tente ajustar seus filtros ou termos de pesquisa</p>
-        </div>
-      )}
-
-      {/* Seção de destaque */}
-      <Card className="bg-gradient-to-r from-blue-900/50 to-slate-800 border-slate-700">
-        <CardContent className="p-8">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-              <Badge className="mb-4 bg-blue-600/20 text-blue-400 border-blue-600/30">Personalizado</Badge>
-              <h2 className="text-2xl font-bold mb-4 text-white">Precisa de uma solução sob medida?</h2>
-              <p className="text-slate-300 mb-6 leading-relaxed">
-                Nossa equipe de especialistas pode criar uma solução de IA personalizada para atender às necessidades
-                específicas do seu negócio. Agende uma consulta gratuita hoje mesmo.
-              </p>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">Agendar Consulta</Button>
-            </div>
-            <div className="md:w-1/3 flex justify-center">
-              <div className="p-8 bg-blue-900/30 rounded-full">
-                <Wrench className="h-20 w-20 text-blue-400" />
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }
